@@ -8,7 +8,7 @@ const {
     getBookingsForLocation
 } = require('../controllers/bookingController');
 const authenticateToken = require('../middleware/authenticateToken');
-const ownerPermission = require('../middleware/ownerPermission');
+const { ownerPermission, locationPermission } = require('../middleware/ownerPermission');
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.post(
     '/',
     passport.authenticate('jwt', { session: false }),
     authenticateToken,
-    ownerPermission,
+    locationPermission,
     createBooking
 );
 
@@ -26,7 +26,7 @@ router.put(
     '/:id',
     passport.authenticate('jwt', { session: false }),
     authenticateToken,
-    ownerPermission,
+    locationPermission,
     updateBooking
 );
 
@@ -35,7 +35,7 @@ router.delete(
     '/:id',
     passport.authenticate('jwt', { session: false }),
     authenticateToken,
-    ownerPermission,
+    locationPermission,
     deleteBooking
 );
 

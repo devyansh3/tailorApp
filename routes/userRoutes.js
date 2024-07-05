@@ -8,7 +8,8 @@ const {
     updateUserValidation
 } = require('../controllers/userController');
 const authenticateToken = require('../middleware/authenticateToken');
-const ownerPermission = require('../middleware/ownerPermission');
+const { ownerPermission, locationPermission } = require('../middleware/ownerPermission');
+
 
 const router = express.Router();
 

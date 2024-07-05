@@ -5,7 +5,6 @@ exports.createBooking = async (req, res) => {
     try {
         const bookingData = req.body;
         const newBooking = await bookingService.createBooking(bookingData);
-        console.log((newBooking) + "checking1")
 
         res.status(201).json(newBooking);
     } catch (err) {
