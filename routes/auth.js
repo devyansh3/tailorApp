@@ -24,7 +24,6 @@ router.post('/login', (req, res, next) => {
         if (err) {
             return res.status(500).json({ message: 'Internal Server Error' });
         }
-        console.log("hello")
         if (!user) {
             return res.status(401).json({ message: info.message });
         }
@@ -36,7 +35,6 @@ router.post('/login', (req, res, next) => {
             role: user.role,     // Include user's role
             location: user.location  // Include user's location
         };
-        console.log(tokenPayload)
 
         const token = jwt.sign(
             tokenPayload,

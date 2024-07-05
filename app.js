@@ -30,7 +30,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/tailorWebApp')
 app.use('/api', routes);
 
 // Server setup
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 
