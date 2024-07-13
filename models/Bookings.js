@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
-    customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', required: true },
+    customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', },
     location: { type: String, required: true },
     measurements: {
         jacket: { type: String, required: true },

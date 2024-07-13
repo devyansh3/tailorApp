@@ -43,8 +43,9 @@ exports.deleteBooking = async (req, res) => {
 
 // Function to get all bookings for user's location
 exports.getBookingsForLocation = async (req, res) => {
+    const location = req.query.location;
     try {
-        const bookings = await bookingService.getBookingsForLocation(req.user.location);
+        const bookings = await bookingService.getBookingsForLocation(location);
         res.json(bookings);
     } catch (err) {
         res.status(500).json({ message: err.message });

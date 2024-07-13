@@ -6,10 +6,7 @@ const cors = require('cors');
 const passport = require('./config/passportConfig');
 const routes = require('./routes');
 const { ERROR_MESSAGES, STATUS_CODES } = require('./utils/constants.js');
-
-
-// require('./config/passportConfig')(passport);
-
+require('dotenv').config();  // Load environment variables from .env file
 
 const app = express();
 
@@ -33,10 +30,11 @@ app.use(
 );
 
 // MongoDB connection
-mongoose.connect('mongodb://127.0.0.1:27017/tailorWebApp')
-    .then(() => console.log('MongoDB connected'))
-    .catch((err) => console.log(err));
+const mongoURI = `mongodb+srv://${process.env.MONGO_USERNAME}:${encodeURIComponent(process.env.MONGO_PASSWORD)}@${process.env.MONGO_CLUSTER_URL}/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`;
 
+mongoose.connect(mongoURI)
+    .then(() => console.log('MongoDB connected'))
+    .catch((err) => console.log(err))
 
 app.use('/api', routes);
 
@@ -44,6 +42,4 @@ app.use('/api', routes);
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-
-
 });
